@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+	background-color: #1A4C1E;
+	margin-top: 5%;
+}
+
+h1 {
+    color: #cdcdcd;
+}
+
+p{
+	color:#ffffff;
+	margin-top:2%;
+	margin-bottom:2%;
+}
+
+#word-display {
+    font-size: 24px;
+    letter-spacing: 5px;
+}
+
+#message {
+    font-size: 18px;
+    color: red;
+}
+
+input {
+    font-size: 16px;
+    text-align: center;
+}
