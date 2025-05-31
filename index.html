@@ -16,12 +16,18 @@
     <p>Guess a letter:</p>
 	<p id="clue"><em>Clue: </em><span id="riddle-text"></span></p>
     <input type="text" id="letter-input" maxlength="1">
-    <button onclick="guessLetter()">Submit</button>
-    
+    <button onclick="guessLetter()">submit</button>
+
     <p id="message"></p>
+    
+    <p id="win"></p>
+    <p id="lose"></p>
     <p>Wrong Guesses: <span id="wrong-guesses"></span></p>
     <p>Attempts Left: <span id="attempts">6</span></p>
     
+    <audio id="correct-sound" src="sounds/correct.mp3"></audio>
+    <audio id="wrong-sound" src="sounds/wrong.mp3"></audio>
+
     <script src="script.js"></script>
 </body>
 </html>
