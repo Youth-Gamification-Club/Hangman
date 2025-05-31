@@ -20,8 +20,13 @@ p{
     letter-spacing: 5px;
 }
 
-#message {
-    font-size: 18px;
+#win {
+    font-size: 36px;
+    color: rgb(127, 127, 255);
+}
+
+#lose {
+    font-size: 36px;
     color: red;
 }
 
@@ -29,3 +34,5 @@ input {
     font-size: 16px;
     text-align: center;
 }
+
+img{margin-bottom:10px;}
