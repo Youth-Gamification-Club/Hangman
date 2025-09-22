@@ -7,27 +7,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hangman Game</h1>
-    
-    <!-- Hangman image -->
-    <img id="hangman-image" src="images/hangman-0.png" alt="Hangman Drawing">
+        <h1>Hangman Game</h1>
+        
+        <img id="hangman-image" src="images/hangman-0.png" alt="Hangman Drawing">
 
-    <p id="word-display"></p>
-    <p>Guess a letter:</p>
-	<p id="clue"><em>Clue: </em><span id="riddle-text"></span></p>
-    <input type="text" id="letter-input" maxlength="1">
-    <button onclick="guessLetter()">submit</button>
+        <p id="word-display"></p>
+        <p>Guess a letter:</p>
+        <p id="clue"><em>Clue: </em><span id="riddle-text"></span></p>
 
-    <p id="message"></p>
-    
-    <p id="win"></p>
-    <p id="lose"></p>
+        <input type="text" id="letter-input" maxlength="1">
+        <button onclick="guessLetter()">Submit</button>
 
-    <button id="restart-btn" onclick="restartGame()" style="display:none;">Play Again</button>
+        <p id="message"></p>
+        <p id="win"></p>
+        <p id="lose"></p>
 
-    <p>Wrong Guesses: <span id="wrong-guesses"></span></p>
-    <p>Attempts Left: <span id="attempts">6</span></p>
-    
+        <button id="restart-btn" onclick="restartGame()" style="display:none;">Play Again</button>
+
+        <p>Wrong Guesses: <span id="wrong-guesses"></span></p>
+        <p>Attempts Left: <span id="attempts">6</span></p>
+
     <audio id="correct-sound" src="sounds/correct.mp3"></audio>
     <audio id="wrong-sound" src="sounds/wrong.mp3"></audio>
 
