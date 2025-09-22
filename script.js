@@ -54,6 +54,9 @@ window.onload = function () {
         if (!display.includes("_")) {
             document.getElementById("win").innerText = "🎉 You Win!";
             document.getElementById("letter-input").disabled = true;
+            const button=document.getElementById("restart-btn");
+            button.style.display="inline";
+            button.onclick=restartGame;
         }
     }
 
@@ -102,4 +105,8 @@ window.onload = function () {
 
     // Initialize display
     updateWordDisplay();
+
+    function restartGame() {
+        location.reload();
+    }  
 };
