@@ -36,3 +36,18 @@ input {
 }
 
 img{margin-bottom:10px;}
+
+#restart-btn {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+#restart-btn:hover {
+    background-color: #45a049;
+}
