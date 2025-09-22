@@ -110,9 +110,10 @@ p {
   margin-top: 10px;
   color: var(--text-light);
   max-width: 95%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: initial;
+  word-break: break-word;
   background: rgba(0, 0, 0, 0.2);
   padding: 15px 20px;
   border-radius: var(--border-radius);
