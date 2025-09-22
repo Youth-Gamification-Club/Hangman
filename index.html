@@ -9,7 +9,7 @@
 <body>
     <h1>Hangman Game</h1>
 
-    <div class="game-layout">
+    <div class="game-layout fade-in">
         <!-- LEFT SIDE -->
         <div class="left-side">
             <img id="hangman-image" src="images/hangman-0.png" alt="Hangman Drawing">
@@ -18,11 +18,52 @@
 
         <!-- RIGHT SIDE -->
         <div class="right-side">
+            <div class="game-stats">
+                <p>Score: <span id="score">0</span></p>
+                <p>Streak: <span id="streak">0</span></p>
+                <button id="hint-btn" onclick="giveHint()">💡 Hint (Reveal Letter)</button>
+            </div>
+
             <p id="clue"><em>Clue: </em><span id="riddle-text"></span></p>
 
             <div class="input-area">
-                <input type="text" id="letter-input" maxlength="1">
+                <input type="text" id="letter-input" maxlength="1" placeholder="Type or click">
                 <button onclick="guessLetter()">Submit</button>
+            </div>
+
+            <div class="keyboard">
+                <div class="keyboard-row">
+                    <button class="key" onclick="guessLetterFromKey('q')">Q</button>
+                    <button class="key" onclick="guessLetterFromKey('w')">W</button>
+                    <button class="key" onclick="guessLetterFromKey('e')">E</button>
+                    <button class="key" onclick="guessLetterFromKey('r')">R</button>
+                    <button class="key" onclick="guessLetterFromKey('t')">T</button>
+                    <button class="key" onclick="guessLetterFromKey('y')">Y</button>
+                    <button class="key" onclick="guessLetterFromKey('u')">U</button>
+                    <button class="key" onclick="guessLetterFromKey('i')">I</button>
+                    <button class="key" onclick="guessLetterFromKey('o')">O</button>
+                    <button class="key" onclick="guessLetterFromKey('p')">P</button>
+                </div>
+                <div class="keyboard-row">
+                    <button class="key" onclick="guessLetterFromKey('a')">A</button>
+                    <button class="key" onclick="guessLetterFromKey('s')">S</button>
+                    <button class="key" onclick="guessLetterFromKey('d')">D</button>
+                    <button class="key" onclick="guessLetterFromKey('f')">F</button>
+                    <button class="key" onclick="guessLetterFromKey('g')">G</button>
+                    <button class="key" onclick="guessLetterFromKey('h')">H</button>
+                    <button class="key" onclick="guessLetterFromKey('j')">J</button>
+                    <button class="key" onclick="guessLetterFromKey('k')">K</button>
+                    <button class="key" onclick="guessLetterFromKey('l')">L</button>
+                </div>
+                <div class="keyboard-row">
+                    <button class="key" onclick="guessLetterFromKey('z')">Z</button>
+                    <button class="key" onclick="guessLetterFromKey('x')">X</button>
+                    <button class="key" onclick="guessLetterFromKey('c')">C</button>
+                    <button class="key" onclick="guessLetterFromKey('v')">V</button>
+                    <button class="key" onclick="guessLetterFromKey('b')">B</button>
+                    <button class="key" onclick="guessLetterFromKey('n')">N</button>
+                    <button class="key" onclick="guessLetterFromKey('m')">M</button>
+                </div>
             </div>
 
             <p id="message"></p>

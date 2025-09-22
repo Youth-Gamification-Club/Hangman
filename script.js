@@ -42,9 +42,14 @@ window.onload = function () {
     let guessedLetters = new Set();
     let attempts = 6;
     let wrongGuesses = [];
+    let score = parseInt(localStorage.getItem('hangmanScore')) || 0;
+    let streak = parseInt(localStorage.getItem('hangmanStreak')) || 0;
+    let hintsUsed = 0;
 
     // Display the riddle for the chosen word
     document.getElementById("riddle-text").innerText = riddles[selectedWord] || "Guess the word!";
+    document.getElementById("score").innerText = score;
+    document.getElementById("streak").innerText = streak;
 
     // Update the word display with underscores and correct letters
     function updateWordDisplay() {
@@ -54,6 +59,13 @@ window.onload = function () {
         if (!display.includes("_")) {
             document.getElementById("win").innerText = "🎉 You Win!";
             document.getElementById("letter-input").disabled = true;
+            score += Math.max(10 - hintsUsed * 2, 1); // Bonus for fewer hints
+            streak++;
+            localStorage.setItem('hangmanScore', score);
+            localStorage.setItem('hangmanStreak', streak);
+            document.getElementById("score").innerText = score;
+            document.getElementById("streak").innerText = streak;
+            document.querySelectorAll('.key').forEach(key => key.disabled = true);
             const button=document.getElementById("restart-btn");
             button.style.display="inline";
             button.onclick=restartGame;
@@ -61,8 +73,8 @@ window.onload = function () {
     }
 
     // Handle a letter guess
-    function guessLetter() {
-        const input = document.getElementById("letter-input").value.toLowerCase();
+    function guessLetter(inputLetter = null) {
+        const input = inputLetter || document.getElementById("letter-input").value.toLowerCase();
         document.getElementById("letter-input").value = ""; // Clear input
         document.getElementById("message").innerText = ""; // Clear message
 
@@ -72,6 +84,17 @@ window.onload = function () {
         }
 
         guessedLetters.add(input);
+
+        // Update keyboard button
+        const keyButton = document.querySelector(`.key[onclick*="guessLetterFromKey('${input}')"]`);
+        if (keyButton) {
+            keyButton.classList.add('used');
+            if (selectedWord.includes(input)) {
+                keyButton.classList.add('correct');
+            } else {
+                keyButton.classList.add('incorrect');
+            }
+        }
 
         if (selectedWord.includes(input)) {
             correctSound.play();  // Play correct guess sound
@@ -91,10 +114,50 @@ window.onload = function () {
         if (attempts === 0) {
             document.getElementById("lose").innerText = "💀 Game Over! The word was " + selectedWord;
             document.getElementById("letter-input").disabled = true;
+            streak = 0;
+            localStorage.setItem('hangmanStreak', streak);
+            document.getElementById("streak").innerText = streak;
+            // Disable all keyboard buttons
+            document.querySelectorAll('.key').forEach(key => key.disabled = true);
+        }
+    }
+
+    // Handle guess from virtual keyboard
+    function guessLetterFromKey(letter) {
+        guessLetter(letter);
+    }
+
+    // Give a hint by revealing a random letter
+    function giveHint() {
+        if (hintsUsed >= 2 || attempts <= 1) {
+            document.getElementById("message").innerText = "⚠️ No more hints available!";
+            return;
+        }
+
+        const unguessedLetters = selectedWord.split("").filter(letter => !guessedLetters.has(letter));
+        if (unguessedLetters.length === 0) return;
+
+        const randomLetter = unguessedLetters[Math.floor(Math.random() * unguessedLetters.length)];
+        guessedLetters.add(randomLetter);
+        hintsUsed++;
+
+        // Update keyboard button
+        const keyButton = document.querySelector(`.key[onclick*="guessLetterFromKey('${randomLetter}')"]`);
+        if (keyButton) {
+            keyButton.classList.add('used', 'correct');
+        }
+
+        document.getElementById("message").innerText = `💡 Hint used! Revealed: ${randomLetter.toUpperCase()}`;
+        updateWordDisplay();
+
+        if (hintsUsed >= 2) {
+            document.getElementById("hint-btn").disabled = true;
         }
     }
 
     window.guessLetter = guessLetter;
+    window.guessLetterFromKey = guessLetterFromKey;
+    window.giveHint = giveHint;
 
     document.getElementById("letter-input").addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
