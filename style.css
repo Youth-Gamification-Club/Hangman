@@ -1,53 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1A4C1E, #285C2C);
     text-align: center;
-	background-color: #1A4C1E;
-	margin-top: 5%;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    overflow: hidden; /* prevent scrolling */
 }
 
 h1 {
-    color: #cdcdcd;
+    color: #ffffff;
+    font-size: 36px;
+    margin: 0;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
 }
 
-p{
-	color:#ffffff;
-	margin-top:2%;
-	margin-bottom:2%;
+p {
+    color: #ffffff;
+    margin: 4px 0;
+    font-size: 16px;
 }
 
 #word-display {
-    font-size: 24px;
-    letter-spacing: 5px;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 8px;
+    margin: 8px 0;
+    color: #f9f9f9;
 }
 
 #win {
-    font-size: 36px;
-    color: rgb(127, 127, 255);
+    font-size: 28px;
+    color: #7FFF7F;
+    animation: bounce 1s ease-in-out infinite alternate;
 }
 
 #lose {
-    font-size: 36px;
-    color: red;
+    font-size: 26px;
+    color: #FF6B6B;
+    animation: shake 0.8s ease-in-out infinite;
 }
 
 input {
-    font-size: 16px;
+    font-size: 18px;
+    padding: 6px;
+    width: 40px;
     text-align: center;
+    border: 2px solid #4CAF50;
+    border-radius: 6px;
+    outline: none;
+    margin-right: 8px;
 }
 
-img{margin-bottom:10px;}
+input:focus {
+    border-color: #7FFF7F;
+    box-shadow: 0 0 6px #7FFF7F;
+}
 
-#restart-btn {
-    font-size: 18px;
-    padding: 10px 20px;
-    margin-top: 15px;
+button {
+    font-size: 15px;
+    padding: 8px 14px;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     background-color: #4CAF50;
     color: white;
     cursor: pointer;
+    transition: 0.2s;
 }
 
-#restart-btn:hover {
+button:hover {
     background-color: #45a049;
+    transform: scale(1.05);
+}
+
+#restart-btn {
+    margin-top: 10px;
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+img {
+    margin: 5px 0;
+    max-width: 150px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Animations */
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-6px); }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    50% { transform: translateX(4px); }
+    75% { transform: translateX(-4px); }
+    100% { transform: translateX(0); }
 }
