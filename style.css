@@ -178,7 +178,7 @@ p {
 input {
   font-size: 1.2rem;
   padding: 12px;
-  width: 80px;
+  width: 120px;
   text-align: center;
   border: 2px solid var(--light-green);
   border-radius: var(--border-radius);
@@ -222,13 +222,13 @@ button:active {
   margin-top: 15px;
   font-size: 1.1rem;
   padding: 14px 25px;
-  align-self: center;
+  margin-right: auto; /* left-align */
 }
 
 #win {
   font-size: 2rem;
   color: var(--success-green);
-  animation: bounce 1s ease-in-out infinite alternate;
+  animation: bounce 0.6s ease-in-out;
   font-weight: 600;
   text-shadow: 2px 2px 4px var(--shadow);
 }

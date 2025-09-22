@@ -174,9 +174,8 @@ window.onload = function () {
     guessedLetters.add(randomLetter);
     hintsUsed++;
 
-    document.getElementById(
-      "message"
-    ).innerText = `💡 Hint used! Revealed: ${randomLetter.toUpperCase()}`;
+    document.getElementById("message").innerText =
+      `💡 Hint used! Revealed: ${randomLetter.toUpperCase()}`;
     updateWordDisplay();
 
     if (hintsUsed >= 2) {
@@ -189,10 +188,12 @@ window.onload = function () {
 
   document
     .getElementById("letter-input")
-    .addEventListener("input", function (event) {
-      const input = event.target.value.toLowerCase();
-      if (input.length === 1 && /^[a-z]$/.test(input)) {
-        guessLetter(input);
+    .addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        const input = event.target.value.toLowerCase();
+        if (input.length === 1 && /^[a-z]$/.test(input)) {
+          guessLetter(input);
+        }
       }
     });
 
