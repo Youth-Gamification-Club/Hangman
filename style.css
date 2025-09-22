@@ -195,58 +195,6 @@ input:focus {
   transform: scale(1.05);
 }
 
-.keyboard {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 100%;
-  margin: 15px 0;
-}
-
-.keyboard-row {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-}
-
-.key {
-  font-size: 1rem;
-  padding: 10px 12px;
-  border: none;
-  border-radius: var(--border-radius);
-  background: rgba(255, 255, 255, 0.2);
-  color: var(--text-light);
-  cursor: pointer;
-  transition: var(--transition);
-  font-weight: 500;
-  min-width: 35px;
-  text-shadow: 1px 1px 2px var(--shadow);
-}
-
-.key:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px var(--shadow);
-}
-
-.key:active {
-  transform: translateY(0);
-}
-
-.key.used {
-  background: rgba(128, 128, 128, 0.3);
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.key.correct {
-  background: var(--success-green);
-}
-
-.key.incorrect {
-  background: var(--error-red);
-}
-
 button {
   font-size: 1rem;
   padding: 12px 20px;

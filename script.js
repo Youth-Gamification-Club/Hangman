@@ -102,7 +102,6 @@ window.onload = function () {
       localStorage.setItem("hangmanStreak", streak);
       document.getElementById("score").innerText = score;
       document.getElementById("streak").innerText = streak;
-      document.querySelectorAll(".key").forEach((key) => (key.disabled = true));
       const button = document.getElementById("restart-btn");
       button.style.display = "inline";
       button.onclick = restartGame;
@@ -130,7 +129,8 @@ window.onload = function () {
 
     guessedLetters.add(input);
 
-    if (selectedWord.includes(input)) {
+    const isCorrect = selectedWord.includes(input);
+    if (isCorrect) {
       correctSound.play(); // Play correct guess sound
       updateWordDisplay();
     } else {
@@ -138,7 +138,7 @@ window.onload = function () {
       attempts--;
       wrongGuesses.push(input);
       document.getElementById("wrong-guesses").innerText =
-        wrongGuesses.join(", ");
+        wrongGuesses.length === 0 ? "None" : wrongGuesses.join(", ");
       document.getElementById("attempts").innerText = attempts;
 
       // Update hangman image
@@ -174,8 +174,9 @@ window.onload = function () {
     guessedLetters.add(randomLetter);
     hintsUsed++;
 
-    document.getElementById("message").innerText =
-      `💡 Hint used! Revealed: ${randomLetter.toUpperCase()}`;
+    document.getElementById(
+      "message"
+    ).innerText = `💡 Hint used! Revealed: ${randomLetter.toUpperCase()}`;
     updateWordDisplay();
 
     if (hintsUsed >= 2) {
