@@ -1,51 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hangman Game</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <h1>Hangman Game</h1>
 
     <div class="game-layout fade-in">
-        <!-- LEFT SIDE -->
-        <div class="left-side">
-            <img id="hangman-image" src="images/hangman-0.png" alt="Hangman Drawing">
-            <p id="word-display"></p>
+      <!-- LEFT SIDE -->
+      <div class="left-side">
+        <p id="word-display"></p>
+        <img
+          id="hangman-image"
+          src="images/hangman-0.png"
+          alt="Hangman Drawing"
+        />
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="right-side">
+        <div class="game-stats">
+          <p>Score: <span id="score">0</span></p>
+          <p>Streak: <span id="streak">0</span></p>
+          <button id="hint-btn" onclick="giveHint()">
+            💡 Hint (Reveal Letter)
+          </button>
         </div>
 
-        <!-- RIGHT SIDE -->
-        <div class="right-side">
-            <div class="game-stats">
-                <p>Score: <span id="score">0</span></p>
-                <p>Streak: <span id="streak">0</span></p>
-                <button id="hint-btn" onclick="giveHint()">💡 Hint (Reveal Letter)</button>
-            </div>
+        <p id="clue"><em>Clue: </em><span id="riddle-text"></span></p>
 
-            <p id="clue"><em>Clue: </em><span id="riddle-text"></span></p>
-
-            <div class="input-area">
-                <input type="text" id="letter-input" maxlength="1" placeholder="Type or click">
-                <button onclick="guessLetter()">Submit</button>
-            </div>
-
-            <p id="message"></p>
-            <p id="win"></p>
-            <p id="lose"></p>
-
-            <button id="restart-btn" onclick="restartGame()" style="display:none;">Play Again</button>
-
-            <p>Wrong Guesses: <span id="wrong-guesses"></span></p>
-            <p>Attempts Left: <span id="attempts">6</span></p>
+        <div class="input-area">
+          <input
+            type="text"
+            id="letter-input"
+            maxlength="1"
+            placeholder="Type or click"
+          />
+          <button onclick="guessLetter()">Submit</button>
         </div>
+
+        <p id="message"></p>
+        <p id="win"></p>
+        <p id="lose"></p>
+
+        <button id="restart-btn" onclick="restartGame()" style="display: none">
+          Play Again
+        </button>
+
+        <p>Wrong Guesses: <span id="wrong-guesses"></span></p>
+        <p>Attempts Left: <span id="attempts">6</span></p>
+      </div>
     </div>
 
     <audio id="correct-sound" src="sounds/correct.mp3"></audio>
     <audio id="wrong-sound" src="sounds/wrong.mp3"></audio>
 
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>
