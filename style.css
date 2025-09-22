@@ -3,21 +3,19 @@
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #1A4C1E, #285C2C);
-    text-align: center;
     margin: 0;
     padding: 0;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     align-items: center;
-    overflow: hidden; /* prevent scrolling */
+    color: #fff;
 }
 
 h1 {
-    color: #ffffff;
+    margin: 15px 0;
     font-size: 36px;
-    margin: 0;
+    color: #ffffff;
     letter-spacing: 2px;
     text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
 }
@@ -28,24 +26,64 @@ p {
     font-size: 16px;
 }
 
+.game-layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    width: 100%;
+    max-width: 1100px; /* allow more horizontal space on wide screens */
+    padding: 10px 20px;
+    flex-grow: 1;
+    box-sizing: border-box;
+}
+
+.left-side {
+    flex: 1 1 50%; /* grow and shrink evenly with right-side */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    min-width: 220px; /* prevent extreme squishing on narrow viewports */
+    text-align: center;
+}
+
+.left-side img {
+    width: 100%;
+    max-width: 420px; /* limit size on very wide screens */
+    height: auto; /* preserve aspect ratio */
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
 #word-display {
-    font-size: 26px;
+    font-size: clamp(18px, 2.2vw, 28px); /* responsive but bounded */
     font-weight: 600;
-    letter-spacing: 8px;
-    margin: 8px 0;
+    letter-spacing: clamp(6px, 1.2vw, 8px);
+    margin-top: 10px;
     color: #f9f9f9;
+    max-width: 95%;
+    white-space: nowrap; /* keep underscores on one line when possible */
+    overflow: hidden;
+    text-overflow: ellipsis; /* avoid breaking layout for very long words */
 }
 
-#win {
-    font-size: 28px;
-    color: #7FFF7F;
-    animation: bounce 1s ease-in-out infinite alternate;
+.right-side {
+    flex: 1 1 50%; /* grow and shrink evenly with left-side */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    text-align: left;
+    min-width: 260px; /* keep controls usable */
 }
 
-#lose {
-    font-size: 26px;
-    color: #FF6B6B;
-    animation: shake 0.8s ease-in-out infinite;
+.input-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 input {
@@ -56,7 +94,6 @@ input {
     border: 2px solid #4CAF50;
     border-radius: 6px;
     outline: none;
-    margin-right: 8px;
 }
 
 input:focus {
@@ -86,11 +123,46 @@ button:hover {
     padding: 10px 20px;
 }
 
-img {
-    margin: 5px 0;
-    max-width: 150px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+#win {
+    font-size: 28px;
+    color: #7FFF7F;
+    animation: bounce 1s ease-in-out infinite alternate;
+}
+
+#lose {
+    font-size: 26px;
+    color: #FF6B6B;
+    animation: shake 0.8s ease-in-out infinite;
+}
+
+/* Responsive behaviour for smaller screens */
+@media (max-width: 800px) {
+    .game-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .left-side,
+    .right-side {
+        width: 100%;
+        min-width: 0;
+        flex: none;
+    }
+
+    .left-side img {
+        max-width: 70%;
+    }
+
+    #word-display {
+        /* allow wrapping on narrow viewports so text is legible */
+        white-space: normal;
+        overflow: visible;
+        text-overflow: initial;
+        font-size: clamp(16px, 4vw, 24px);
+        letter-spacing: 6px;
+        word-break: break-word;
+    }
 }
 
 /* Animations */
