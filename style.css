@@ -42,7 +42,7 @@ body::before {
 
 h1 {
     margin: 20px 0 10px;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: var(--text-light);
     letter-spacing: 3px;
@@ -66,7 +66,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 50px;
+    gap: 30px;
     width: 100%;
     max-width: 1200px;
     padding: 20px;
@@ -190,7 +190,7 @@ p {
 input {
     font-size: 1.2rem;
     padding: 12px;
-    width: 60px;
+    width: 80px;
     text-align: center;
     border: 2px solid var(--light-green);
     border-radius: var(--border-radius);
@@ -315,7 +315,8 @@ button:active {
     .game-layout {
         flex-direction: column;
         align-items: center;
-        gap: 30px;
+        gap: 20px;
+        padding: 10px;
     }
 
     .left-side,
@@ -339,7 +340,7 @@ button:active {
     }
 
     h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 }
 

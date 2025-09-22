@@ -85,17 +85,6 @@ window.onload = function () {
 
         guessedLetters.add(input);
 
-        // Update keyboard button
-        const keyButton = document.querySelector(`.key[onclick*="guessLetterFromKey('${input}')"]`);
-        if (keyButton) {
-            keyButton.classList.add('used');
-            if (selectedWord.includes(input)) {
-                keyButton.classList.add('correct');
-            } else {
-                keyButton.classList.add('incorrect');
-            }
-        }
-
         if (selectedWord.includes(input)) {
             correctSound.play();  // Play correct guess sound
             updateWordDisplay();
@@ -117,14 +106,7 @@ window.onload = function () {
             streak = 0;
             localStorage.setItem('hangmanStreak', streak);
             document.getElementById("streak").innerText = streak;
-            // Disable all keyboard buttons
-            document.querySelectorAll('.key').forEach(key => key.disabled = true);
         }
-    }
-
-    // Handle guess from virtual keyboard
-    function guessLetterFromKey(letter) {
-        guessLetter(letter);
     }
 
     // Give a hint by revealing a random letter
@@ -141,12 +123,6 @@ window.onload = function () {
         guessedLetters.add(randomLetter);
         hintsUsed++;
 
-        // Update keyboard button
-        const keyButton = document.querySelector(`.key[onclick*="guessLetterFromKey('${randomLetter}')"]`);
-        if (keyButton) {
-            keyButton.classList.add('used', 'correct');
-        }
-
         document.getElementById("message").innerText = `💡 Hint used! Revealed: ${randomLetter.toUpperCase()}`;
         updateWordDisplay();
 
@@ -156,12 +132,12 @@ window.onload = function () {
     }
 
     window.guessLetter = guessLetter;
-    window.guessLetterFromKey = guessLetterFromKey;
     window.giveHint = giveHint;
 
-    document.getElementById("letter-input").addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-            guessLetter();
+    document.getElementById("letter-input").addEventListener("input", function (event) {
+        const input = event.target.value.toLowerCase();
+        if (input.length === 1 && /^[a-z]$/.test(input)) {
+            guessLetter(input);
         }
     });
     
