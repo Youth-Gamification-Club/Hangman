@@ -415,7 +415,9 @@ button:active {
     min-height: 44px;
   }
 
-  #message, #win, #lose {
+  #message,
+  #win,
+  #lose {
     font-size: 1.1rem;
   }
 
