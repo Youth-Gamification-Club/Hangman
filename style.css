@@ -1,11 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 :root {
+  /* Base palette */
   --primary-green: #2e8b57;
   --light-green: #3cb371;
   --dark-green: #1a4c1e;
-  --accent-green: #7fff7f;
-  --error-red: #ff6b6b;
+  --accent-green: #7fff7f; /* Avoid for text-on; too light for contrast */
+
+  /* Accessible semantic colors */
+  --btn-bg: #166534; /* dark emerald */
+  --btn-bg-hover: #15803d; /* slightly lighter */
+  --btn-text: #ffffff;
+  --input-border: #166534;
+  --focus-outline: #ffffff;
+  --success-bg: #14532d; /* deep success */
+  --success-text: #ffffff;
+  --error-bg: #7f1d1d; /* deep error */
+  --error-text: #ffffff;
+
   --success-green: #32cd32;
   --text-light: #f0f8ff;
   --text-dark: #2f4f4f;
@@ -56,7 +68,8 @@ h1 {
   letter-spacing: 3px;
   text-shadow: 2px 2px 8px var(--shadow);
   text-align: center;
-  background: linear-gradient(45deg, var(--accent-green), var(--text-light));
+  /* Keep subtle gradient but avoid overly light green for readability */
+  background: linear-gradient(45deg, #a7f3d0, var(--text-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -143,16 +156,17 @@ p {
 #hint-btn {
   font-size: 0.9rem;
   padding: 8px 12px;
-  background: linear-gradient(45deg, var(--accent-green), var(--primary-green));
+  background: var(--btn-bg);
   border: none;
   border-radius: var(--border-radius);
-  color: white;
+  color: var(--btn-text);
   cursor: pointer;
   transition: var(--transition);
   box-shadow: 0 2px 8px var(--shadow);
 }
 
 #hint-btn:hover {
+  background: var(--btn-bg-hover);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px var(--shadow);
 }
@@ -181,7 +195,7 @@ input {
   padding: 12px;
   width: 120px;
   text-align: center;
-  border: 2px solid var(--light-green);
+  border: 2px solid var(--input-border);
   border-radius: var(--border-radius);
   outline: none;
   background: rgba(255, 255, 255, 0.9);
@@ -191,9 +205,15 @@ input {
 }
 
 input:focus {
-  border-color: var(--accent-green);
-  box-shadow: 0 0 12px rgba(127, 255, 127, 0.5);
-  transform: scale(1.05);
+  border-color: var(--btn-bg-hover);
+  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.35);
+  outline: 2px solid var(--focus-outline);
+  outline-offset: 2px;
+  transform: scale(1.03);
+}
+
+input::placeholder {
+  color: #6b7280; /* ensure readable placeholder */
 }
 
 button {
@@ -201,8 +221,8 @@ button {
   padding: 12px 20px;
   border: none;
   border-radius: var(--border-radius);
-  background: linear-gradient(45deg, var(--primary-green), var(--light-green));
-  color: white;
+  background: var(--btn-bg);
+  color: var(--btn-text);
   cursor: pointer;
   transition: var(--transition);
   font-weight: 500;
@@ -210,13 +230,18 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(45deg, var(--light-green), var(--primary-green));
+  background: var(--btn-bg-hover);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px var(--shadow);
 }
 
 button:active {
   transform: translateY(0);
+}
+
+button:focus-visible {
+  outline: 3px solid var(--focus-outline);
+  outline-offset: 3px;
 }
 
 #restart-btn {
@@ -226,20 +251,34 @@ button:active {
   margin-right: auto; /* left-align */
 }
 
+/* Hide status badges when they have no content */
+#win:empty,
+#lose:empty {
+  display: none;
+}
+
+#win,
+#lose {
+  padding: 10px 14px;
+  border-radius: calc(var(--border-radius) - 4px);
+  display: inline-block;
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
 #win {
   font-size: 2rem;
-  color: var(--success-green);
+  color: var(--success-text);
+  background: var(--success-bg);
   animation: bounce 0.6s ease-in-out;
-  font-weight: 600;
-  text-shadow: 2px 2px 4px var(--shadow);
+  font-weight: 700;
 }
 
 #lose {
   font-size: 1.8rem;
-  color: var(--error-red);
+  color: var(--error-text);
+  background: var(--error-bg);
   animation: shake 0.8s ease-in-out infinite;
-  font-weight: 600;
-  text-shadow: 2px 2px 4px var(--shadow);
+  font-weight: 700;
 }
 
 #message {
