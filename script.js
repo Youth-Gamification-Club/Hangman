@@ -7,10 +7,6 @@ let hintsUsed;
 let score;
 let streak;
 
-// Sound effects
-const correctSound = document.getElementById("correct-sound");
-const wrongSound = document.getElementById("wrong-sound");
-
 let riddles;
 let words;
 
@@ -122,10 +118,8 @@ function guessLetter(inputLetter = null) {
 
   const isCorrect = selectedWord.includes(input);
   if (isCorrect) {
-    correctSound.play(); // Play correct guess sound
     updateWordDisplay();
   } else {
-    wrongSound.play(); // Play wrong guess sound
     attempts--;
     wrongGuesses.push(input);
     document.getElementById("wrong-guesses").innerText =
