@@ -22,23 +22,31 @@ async function loadRiddles() {
 
 window.onload = async function () {
   await loadRiddles();
-  // Initialize score and streak from localStorage
   score = parseInt(localStorage.getItem("hangmanScore")) || 0;
   streak = parseInt(localStorage.getItem("hangmanStreak")) || 0;
 
-  // Set up event listeners
-  document
-    .getElementById("letter-input")
-    .addEventListener("keydown", function (event) {
-      if (event.key === "Enter") {
-        const input = event.target.value.toLowerCase();
-        if (input.length === 1 && /^[a-z]$/.test(input)) {
-          guessLetter(input);
-        }
-      }
-    });
+  const letterInput = document.getElementById("letter-input");
 
-  // Initialize the game
+  let inputTimeout = null;
+  letterInput.addEventListener("input", function (event) {
+    clearTimeout(inputTimeout);
+    inputTimeout = setTimeout(() => {
+      const value = event.target.value.toLowerCase();
+      if (value.length === 1 && /^[a-z]$/.test(value)) {
+        guessLetter(value);
+      }
+    }, 50); // small delay to allow composition on some IMEs
+  });
+
+  letterInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      const input = event.target.value.toLowerCase();
+      if (input.length === 1 && /^[a-z]$/.test(input)) {
+        guessLetter(input);
+      }
+    }
+  });
+
   initGame();
 };
 
